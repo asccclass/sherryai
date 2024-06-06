@@ -1,1 +1,8 @@
 SystemName=Sherry AI 系統
+PORT=80
+OriginAllowList=https://www.justdrink.com.tw;http://www.justdrink.com.tw
+AllowMethods=POST;GET;PUT;DELETE
+
+DocumentRoot=www/html
+TemplateRoot=www/template/
+UploadFolder=tmp/
