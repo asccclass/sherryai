@@ -6,3 +6,5 @@ AllowMethods=POST;GET;PUT;DELETE
 DocumentRoot=www/html
 TemplateRoot=www/template/
 UploadFolder=tmp/
+
+TaideUrl=http://10.16.10.231:11434/api/chat

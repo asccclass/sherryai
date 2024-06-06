@@ -2,15 +2,15 @@ package botManager
 
 import(
    "os"
-   "fmt"
+   // "fmt"
 )
 
-type BotManager {
+type BotManager struct {
    Type         string          `json:"typez"`  // bot 類別
    Url          string          `json:"url"`    // bot Url
 }
 
-func newBotManager(botType string)(*BotManager, error) {
+func NewBotManager(botType string)(*BotManager, error) {
    if botType == "" {
       botType = "Taide"   // 預設
    }
