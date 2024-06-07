@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html lang="zh_TW">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Sherry AI</title>
-   </head>
-   <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <button id="toggle-sidebar">Toggle Sidebar</button>
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header>
+                <button id="toggle-theme">Toggle Theme</button>
+                <h1>Dashboard</h1>
+            </header>
+            <section>
+                <p>Welcome to the Dashboard!</p>
+                <!-- Your content goes here -->
+                <div class="output-area">
+                   <ul id="outputArea">
+                   </ul>
+                </div>  <!-- 這裡顯示結果 -->
+            </section>
+        </main>
+        
+        <!-- 在 </main> 標籤後面添加以下代碼 -->
+        <div class="input-area">
+           <form>
+           <input type="text" id="message" name="message" placeholder="在這裡輸入文字...">
+           <button type="submit" id="submitBtn">Submit</button>
+         </form>
+        </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+         const sidebar = document.querySelector('.sidebar');
+         const toggleSidebarButton = document.getElementById('toggle-sidebar');
+         const toggleThemeButton = document.getElementById('toggle-theme');
+         const body = document.body;
 
-   </body>
+         // Toggle sidebar collapse
+         toggleSidebarButton.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+         });
+
+         // Toggle between dark and light themes
+         toggleThemeButton.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+        });
+      });
+      $("#submitBtn").click(async function() { // 要發送的 JSON 資料
+           var jsonData = {
+              "message": "我要寫論文，幫我虛構一個臺灣客家文學史專業教授老師的身分背景。請你扮演這個角色，角色描述如下：\n1、充分了解臺灣客家源流及相關歷史\n注意，以上是你的角色，請你帶入這個角色後和我對話，感謝。"
+           };
+           // 發送 POST 請求
+           const response = await fetch('/askai', {
+              method: 'POST',
+              headers: {
+                 'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(jsonData)
+           });
+           const data = await response.json();
+           console.log(data);
+      });
+    </script>
+</body>
 </html>

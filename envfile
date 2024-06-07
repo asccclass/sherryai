@@ -8,3 +8,5 @@ TemplateRoot=www/template/
 UploadFolder=tmp/
 
 TaideUrl=http://10.16.10.231:11434/api/chat
+TaideModel=ryan4559/llama3-taide-lx-8b-chat-alpha1-4bit
+TaideToken=

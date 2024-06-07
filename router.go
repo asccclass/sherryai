@@ -21,7 +21,7 @@ func NewRouter(srv *SherryServer.Server, documentRoot string)(*http.ServeMux) {
       fmt.Println("Initial boot manager error:" + err.Error())
 		return nil
 	}
-	fmt.Println(ai.Url)
+   ai.AddRouter(router)
 
 /*
    // App router
